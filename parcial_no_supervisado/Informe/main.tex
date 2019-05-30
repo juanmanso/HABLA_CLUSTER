@@ -1,0 +1,48 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}		% Configuro la codificación
+\input{config.tex}				% Archivo con los comandos globales como Título y autores
+\input{preamble.tex}
+\input{aux_functions.tex}		% Se proveen un conjunto de funciones extras
+
+% Defino el path de los includegraphics
+\graphicspath{{./Figuras/}}		% Directorio que contiene los graficos
+
+% Defino el path para los input de .tex y de .eps
+\makeatletter
+\def\input@path{{./Figuras/}{./Secciones/}{./Cover_page/}}
+\makeatother
+
+% Defino el path del listings
+\ifListings
+%% Cambiar el nombre de la carpeta si se utilizan Listings
+	\lstinputpath{{../Octave/}}
+\fi
+
+\definecolor{myred}{rgb}{0.5,0,0}
+\definecolor{mygreen}{rgb}{0,0.5,0}
+
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\begin{document}
+		% Carátula (formal o simple,_formal o _simple respectivamente) con Resumen
+		% incluido e Índice (si es necesario configurar en config.tex) del informe
+		\input{cover_formal.tex}
+	\setcounter{page}{1}
+
+	\input{em.tex}
+
+	\pagebreak
+	\appendix
+		\section{Funciones auxiliares}
+			\subsection{discriminante.m}
+				\lstinputlisting[caption = \texttt{discriminante.m}]{discriminante.m}
+			\subsection{estim\_cov.m}
+				\lstinputlisting[caption = \texttt{estim\_cov.m}]{estim_cov.m}
+			\subsection{estim\_sigma.m}
+				\lstinputlisting[caption = \texttt{estim\_sigma.m}]{estim_sigma.m}
+			\subsection{inicializacion.m}
+				\lstinputlisting[caption = \texttt{inicializacion.m}]{inicializacion.m}
+			\subsection{responsabilidad.m}
+				\lstinputlisting[caption = \texttt{responsabilidad.m}]{responsabilidad.m}
+\end{document}
